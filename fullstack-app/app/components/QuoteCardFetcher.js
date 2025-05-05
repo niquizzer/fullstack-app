@@ -1,19 +1,30 @@
 
-const QuoteCardFetcher = () => {
+const QuoteCardFetcher = async () => {
 
 const api_key = "ofGZ7KpvT0LVOiA+T6NS0A==vpgI9ZPpLwsaa2ng";
 const api_link = "https://api.api-ninjas.com/v1/quotes";
 
-    fetch(api_link, {
+try {
+    const res = await fetch(api_link, {
         headers: {
             "X-Api-Key": api_key,
-        }
+        },
+        cache: "no-store",
     })
-    .then((res) => res.json())
-    .then((quote) => {
-        console.log(quote);
-    })
-    .catch((error) => console.error("Error fetching", error))
+
+} catch (error) {
+    console.log("Uh oh! Something's not working :", error);
 }
 
-export default QuoteCardFetcher;    
+    const data = await res.json();
+    const quote = data[0].quote;
+    const author = data[0].author;
+
+
+    console.log("Quote: ", quote, "Author: ", author);
+    return (
+        <div id="quote"></div>
+    );
+}
+
+export default QuoteCardFetcher;
