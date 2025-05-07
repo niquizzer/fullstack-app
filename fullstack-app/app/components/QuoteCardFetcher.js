@@ -1,12 +1,12 @@
 "use client"; // Use "client" for React components
 
 import { useEffect, useState } from "react";
-
+import { saveCurrentQuote } from "./SaveQuote"; // Import the saveCurrentQuote function
 const QuoteCardFetcher = () => {
-    const [quote, setQuote] = useState("");
-    const [author, setAuthor] = useState("");
+    const [quote, setQuote] = useState("Loading...");
+    const [author, setAuthor] = useState("Loading...");
 
-    useEffect(() => {
+    useEffect(() => {   
         const fetchQuote = async () => {
             const api_key = "ofGZ7KpvT0LVOiA+T6NS0A==vpgI9ZPpLwsaa2ng";
             const api_link = "https://api.api-ninjas.com/v1/quotes";
@@ -37,6 +37,7 @@ const QuoteCardFetcher = () => {
             <p id="current-quote">{quote}</p>
             <p id="curretn-author">- {author}</p>
             <button onClick={() => window.location.reload()}>New Quote</button>
+            <button onClick={() => saveCurrentQuote()}>Save Quote</button>
         </div>
     );
 };
