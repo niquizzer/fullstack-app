@@ -1,6 +1,5 @@
-"use client"
-
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const SaveQuote = () => {
     // Save all the necessary data from the Redux store

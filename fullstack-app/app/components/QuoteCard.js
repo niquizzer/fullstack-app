@@ -1,5 +1,3 @@
-"use server"; // Use "server" for server components
-
 import QuoteCardFetcher from "./QuoteCardFetcher";
 import SaveQuote from "./SaveQuote";
 

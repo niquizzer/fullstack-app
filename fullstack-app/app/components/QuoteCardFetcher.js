@@ -1,13 +1,15 @@
-"use client"; // Use "client" for React components
-
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const QuoteCardFetcher = () => {
-    const [quote, setQuote] = useState("Loading...");
-    const [author, setAuthor] = useState("Loading...");
+    const setQuote = useDispatch();
+    const quoteState = useSelector((state) => state.currentQuote);
 
-    useEffect(() => {   
-        const fetchQuote = async () => {
+    const setAuthor = useDispatch();
+    const authorState = useSelector((state) => state.currentAuthor);
+
+    useEffect(() => {
+     const fetchQuote = async () => {
             const api_key = "ofGZ7KpvT0LVOiA+T6NS0A==vpgI9ZPpLwsaa2ng";
             const api_link = "https://api.api-ninjas.com/v1/quotes";
 
@@ -20,25 +22,26 @@ const QuoteCardFetcher = () => {
                 });
 
                 const data = await res.json();
-                setQuote(data[0].quote);
-                setAuthor(data[0].author);
-                console.log("Quote: ", data[0].quote, "Author: ", data[0].author);
-
+                
+                setQuote({ type: "SET_QUOTE", payload: data[0].quote });
+                setAuthor({ type: "SET_AUTHOR", payload: data[0].author });
+                console.log("Quote: ", data[0].quote);
+                console.log("Author: ", data[0].author);
+       
             } catch (error) {
                 console.log("Uh oh! Something's not working :", error);
             }
-        };
-
-        fetchQuote(); // Call the async function inside useEffect
-    }, []); // Empty dependency array ensures this runs only once on load
+      };
+                fetchQuote();
+    }, []);
 
     return (
         <div id="quote">
-            <p id="current-quote">{quote}</p>
-            <p id="curretn-author">- {author}</p>
+            <p>{quoteState}</p>
+            <p>- {authorState}</p>
             <button onClick={() => window.location.reload()}>New Quote</button>
         </div>
     );
 };
-
+       
 export default QuoteCardFetcher;

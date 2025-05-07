@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
         currentQuote: (state = "", action) => {
             switch (action.type) {
@@ -20,3 +20,5 @@ export const store = configureStore({
         },
     },
 });
+
+export default store;
