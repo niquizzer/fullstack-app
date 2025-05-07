@@ -1,7 +1,7 @@
 "use client"; // Use "client" for React components
 
 import { useEffect, useState } from "react";
-import { saveCurrentQuote } from "./SaveQuote"; // Import the saveCurrentQuote function
+
 const QuoteCardFetcher = () => {
     const [quote, setQuote] = useState("Loading...");
     const [author, setAuthor] = useState("Loading...");
@@ -37,7 +37,6 @@ const QuoteCardFetcher = () => {
             <p id="current-quote">{quote}</p>
             <p id="curretn-author">- {author}</p>
             <button onClick={() => window.location.reload()}>New Quote</button>
-            <button onClick={() => saveCurrentQuote()}>Save Quote</button>
         </div>
     );
 };
