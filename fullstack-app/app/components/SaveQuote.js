@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 
 const SaveQuote = () => {
     // Save all the necessary data from the Redux store
@@ -7,9 +6,7 @@ const SaveQuote = () => {
     const currentAuthor = useSelector((state) => state.currentAuthor);
    
     const saveCurrentQuote = async () => {
-    console.log("Saving current quote...");
-    
-    const initiateSave = await fetch ('/api/saveQuote', {
+    const initiateSave = await fetch ('/pages/api/saveQuote', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

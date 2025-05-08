@@ -4,7 +4,7 @@ const LoadQuoteList = () => {
 
     useEffect(() => {
         const fetchSavedQuotes = async () => {
-            const res = await fetch('/api/getSavedQuotes', {
+            const res = await fetch('/pages/api/saveQuote', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
